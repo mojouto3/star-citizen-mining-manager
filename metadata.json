@@ -1,0 +1,6 @@
+{
+  "name": "Star Citizen Mining & Payout Manager",
+  "description": "An intuitive logistics ledger and simulator for Star Citizen mining operations. Calibrate lasers, search up-to-date ore values, track crew expenses, and calculate exact cooperative payouts with mo.TRADER instructions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
