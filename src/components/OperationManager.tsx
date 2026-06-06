@@ -48,7 +48,7 @@ function formatTimeRemaining(ms: number): string {
 export function OperationManager() {
   const [session, setSession] = useState<OperationSession>({
     id: "session-1",
-    title: "Operation Quantainium Lyria",
+    title: "New Mining Operation",
     date: new Date().toLocaleDateString("en-US"),
     splitMethod: "Equal",
     roleShares: {
@@ -57,21 +57,10 @@ export function OperationManager() {
       "Refine Hauler": 25,
       Coordinator: 10,
     },
-    participants: [
-      { id: "p-1", name: "Commandant_ST", role: "Coordinator", shipId: "mole", sharePercentage: 25, customAdditions: 0, status: "Scouting" },
-      { id: "p-2", name: "StarMinerX", role: "Miner", shipId: "prospector", sharePercentage: 25, customAdditions: 0, status: "Mining" },
-      { id: "p-3", name: "Cargo_Maximus", role: "Raw Hauler", shipId: "prospector", sharePercentage: 25, customAdditions: 0, status: "Hauling" },
-      { id: "p-4", name: "TDD_Seller_ST", role: "Refine Hauler", shipId: "mole", sharePercentage: 25, customAdditions: 0, status: "Refining" },
-    ],
-    cargoLoads: [
-      { id: "c-1", materialId: "quantainium", quantitySCU: 32, refineMethod: "Cormack", isRefined: true, actualSellPricePerSCU: 25600 },
-      { id: "c-2", materialId: "bexalite", quantitySCU: 16, refineMethod: "Unrefined", isRefined: false, actualSellPricePerSCU: 4200 },
-    ],
-    expenses: [
-      { id: "e-1", description: "Cormack Refinery Processing Fee", amount: 24000, paidByParticipantId: "p-1" },
-      { id: "e-2", description: "C2 Hercules Quantum Fuel top-up", amount: 5000, paidByParticipantId: "p-4" },
-    ],
-    notes: "Highly successful expedition on Lyria with high purity Quantainium pockets. TDD_Seller_ST oversaw safe refined delivery to Area18 TDD.",
+    participants: [],
+    cargoLoads: [],
+    expenses: [],
+    notes: "",
   });
 
   // UI state
@@ -304,26 +293,7 @@ export function OperationManager() {
         console.error("Error loading scanned clusters", e);
       }
     }
-    return [
-      {
-        id: "cluster-1",
-        scoutName: "Commandant_ST",
-        location: "Lyria - OM-1 - Cluster Alpha",
-        oresDetected: "Quantainium 48.5% • Laranite 12.0%",
-        status: "Extracted",
-        notes: "Signal strong. Laser Operator StarMinerX deployed to location of this rock.",
-        timestamp: "16:45:10"
-      },
-      {
-        id: "cluster-2",
-        scoutName: "Commandant_ST",
-        location: "Lyria - OM-1 - Sector 9 (Deep Belt)",
-        oresDetected: "Quantainium 41.2% • Agricium 15.6%",
-        status: "Splitting",
-        notes: "High stability threshold. Lancet laser head with active filter module recommended.",
-        timestamp: "16:55:22"
-      }
-    ];
+    return [];
   });
 
   const [saddlebagSwaps, setSaddlebagSwaps] = useState<SaddlebagSwap[]>(() => {
@@ -335,20 +305,7 @@ export function OperationManager() {
         console.error("Error loading saddlebag swaps", e);
       }
     }
-    return [
-      {
-        id: "swap-1",
-        minerName: "StarMinerX",
-        minerShip: "MISC Prospector",
-        haulerName: "Cargo_Maximus",
-        haulerShip: "C2 Hercules (Cargo)",
-        bagCount: 4,
-        totalSCU: 32,
-        materialName: "Quantainium",
-        notes: "Smooth retrieval. All 4 saddlebags locked on cargo grid.",
-        timestamp: "17:02:45"
-      }
-    ];
+    return [];
   });
 
   // Sync Field Operations Log States
@@ -945,7 +902,7 @@ export function OperationManager() {
 
     const defaultSession = {
       id: "session-1",
-      title: "Operation Quantainium Lyria",
+      title: "New Mining Operation",
       date: new Date().toLocaleDateString("en-US"),
       splitMethod: "Equal" as const,
       roleShares: {

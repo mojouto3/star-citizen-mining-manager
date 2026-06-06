@@ -1,61 +1,85 @@
-# Star Citizen Mining & Payout Manager 🚀💎
+# 🚀💎 Star Citizen Mining & Payout Manager (Aetheros Ledger)
 
-An intuitive logistics ledger and simulator for Star Citizen mining operations. Calibrate lasers, search up-to-date ore values, track crew expenses, and calculate exact cooperative payouts with mo.TRADER instructions.
-
-## ✨ Features
-- **Dynamic Laser Calibration**: Simulate and calibrate laser power for various ore deposits.
-- **Up-to-Date Ore Values**: Quickly search and reference current ore market values.
-- **Logistics Ledger**: Track crew expenses, consumables, fuel, and refine costs.
-- **Cooperative Payout Splitter**: Automatically calculate exact splits for your crew and generate copy-pasteable custom `mo.TRADER` trading instructions.
-- **Responsive Interface**: Optimised for use on a tablet, secondary monitor, or mobile device while flying.
+An elegant, real-time cooperative logistics ledger, tuning simulator, and profit-distribution engine designed for Star Citizen mining orgs and industrial squads. Easily calibrate laser setups, find current Stanton commodity values, log refinery schedules, and automatically settle crew dividends using in-game terminal transfer instructions.
 
 ---
 
-## 🛠️ Get Started Locally
+## 📖 Players & Operatives Manual
 
-Follow these steps to run the application on your computer:
+If you are a fleet captain, coordinator, or pilot, use this guide to successfully run and distribute cooperative profits from multi-crew mining expeditions.
+
+### 👥 1. Core Fleet Roles Explained
+- **Coordinator & Scout**: Operates agile scanner ships (e.g., Anvil C8X Pisces or RSI Mantis), finding high-purity asteroid/planetary cluster locations (Quantainium, Bexalite, etc.) and registering logs.
+- **Laser Operator (Miner)**: Dispatches heavy mining ships (e.g., MISC Prospector or ARGO MOLE) with advanced laser configurations to safely fracture highly unstable rocks.
+- **Raw Hauler**: Swaps empty saddlebags for packed containers on-site, ferrying material quickly to keep miners operational in deep space.
+- **Refine Hauler & TDD Seller**: Receives the raw cargo bags, starts specialized refinery processes at station terminals, tracks yields, loads transport freighters (e.g., Crusader C2/M2 Hercules), and sells them at Trade & Development Division (TDD) markets.
+
+---
+
+### ⚙️ 2. Step-by-Step Mission Workflow
+
+#### 🛰️ Step 1: Enlist Your Crew
+- Navigate to the **Co-op Mission Log Management** section.
+- Click **Enlist New Crew Member** to add player handle nicknames.
+- Assign their active **Role**, **Active Vessel**, and **Vessel Status** (e.g., Scouting, Mining, Hauling, standby).
+- *Tip*: If you just want to see how the system handles active mathematics, click **Load Logistics Scenario** or **Load Demo Crew** to populate a scenario!
+
+#### 💎 Step 2: Log Field Operations (Optional)
+- **Scanned Clusters**: Log detected rocks with their location (e.g., `Lyria - Sector 9`) and composition percentages (`Quantainium 45%`) to allocate miners to coordinates.
+- **Saddlebag Swaps**: Record container exchanges in real-time between your active miners and bulk haulers (`StarMinerX -> Cargo_Maximus`).
+
+#### 📦 Step 3: Record Extracted Runs
+- Once a cargo run is completed or delivered, go to **Record Extracted Cargo Run**.
+- Enter the **Commodity Material** (e.g., Quantainium), **SCU Volume** (e.g., 32 SCU), and **Processing Path** (refined or unrefined).
+- If refining, choose your **Refinery Station** (e.g., ARC-L1 Wide Forest) and **Refining Method** (e.g., Cormack, Dinyx, etc.).
+- Enable **Auto-log processing fee inside mission expenses** so the ledger automatically tracks out-of-pocket tax costs.
+- Click **Record Cargo & Deploy Routing** to lock the load into your cooperative manifest.
+
+#### 💸 Step 4: Add Operational Expenditures & Surcharges
+- Log any fuel refills, laser head rentals, or custom refinery processing fees under **Operational Expenditures**.
+- Note the nickname of the pilot who paid for it.
+- **The Ledger Math Rule**: The system automatically reimburses these out-of-pocket costs to that specific pilot *before* calculating dividends. No one loses their hard-earned money over shared logistics!
+
+#### ⚖️ Step 5: Choose Your Split Strategy
+- **Equal Split**: Distribute the remaining net profit pot equally to all active crew members.
+- **By Role %**: Distribute profits using adjustable weights mapped to critical operational roles (e.g. Miner gets 40%, Scout gets 20%).
+- **Custom Shares**: Direct adjustable proportional splits per pilot for fine-tuned organization shares.
+
+#### 💬 Step 6: Execute Payments in Star Citizen
+- Once everyone's dividends are calculated, scroll to the **`mo.TRADER` Transfer Commands** section at the bottom.
+- Select specific command lines (e.g., `/transfer Commandant_ST 210254`) and click **Copy**.
+- Open your chat console inside Star Citizen (`ENTER`) and paste (`CTRL+V`) to instantly send the exact currency amounts to your crew mates without hassle or rounding mistakes!
+
+---
+
+## 🛠️ Developer Local Onboarding
 
 ### 1. Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+Ensure you have [Node.js](https://nodejs.org/) (v18 or higher) installed on your computer.
 
 ### 2. Installation
-Extract the downloaded ZIP file and open your terminal / command prompt in that directory:
-
+Extract the package files, open your terminal / command prompt in the directory of the project, and run:
 ```bash
-# Install dependencies
+# Install required npm packages
 npm install
 ```
 
-### 3. Running in Development
-Start the local Vite development server:
-
+### 3. Running in Development Mode
+Start the high-speed Vite development server:
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+Open [http://localhost:3000](http://localhost:3000) in your web browser.
 
-### 4. Production Build
-To build the app for production, compile the static files into the `dist/` folder:
-
+### 4. Build & Production Compilation
+To compile static files into the web production `dist/` bundle:
 ```bash
 npm run build
 ```
 
 ---
 
-## 🌐 Deploy to GitHub Pages
-
-This project is configured for automated deployment to GitHub Pages via the `gh-pages` package.
-
-### Configuration
-Ensure your `vite.config.ts` has the correct `base` path alignment matching your repository name:
-```typescript
-base: '/star-citizen-mining-manager/',
-```
-
-### Deploying
-Simply execute:
-```bash
-npm run deploy
-```
-This will automatically build your app and publish the compiled files directly to the `gh-pages` branch.
+## 🌐 Deployed Sandbox
+This application is designed to be easily deployed to GitHub Pages and contains pre-configured workspace paths:
+- Deploy command: `npm run deploy`
+- Custom configuration target: `/star-citizen-mining-manager/` (Vite base pointer).

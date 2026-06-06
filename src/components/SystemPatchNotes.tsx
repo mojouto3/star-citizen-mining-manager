@@ -130,7 +130,7 @@ interface SystemPatchNotesProps {
 }
 
 export function SystemPatchNotes({ isOpen, onClose }: SystemPatchNotesProps) {
-  const [activeTab, setActiveTab] = useState<"features" | "patches">("features");
+  const [activeTab, setActiveTab] = useState<"guide" | "features" | "patches">("guide");
   const [patchNotes, setPatchNotes] = useState<PatchNote[]>([]);
   
   // Custom Form State
@@ -324,28 +324,40 @@ export function SystemPatchNotes({ isOpen, onClose }: SystemPatchNotesProps) {
               {/* HUD Tabs Navigation */}
               <div className="flex bg-slate-900 p-1 rounded-lg border border-slate-800/80 mt-5">
                 <button
+                  onClick={() => { setActiveTab("guide"); setShowAddForm(false); }}
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-mono text-[10px] md:text-xs font-bold transition-all ${
+                    activeTab === "guide"
+                      ? "bg-amber-500 text-slate-950"
+                      : "text-slate-400 hover:text-slate-200"
+                  }`}
+                  id="tab_sys_guide"
+                >
+                  <Info className="w-3.5 h-3.5 shrink-0" />
+                  <span>USER GUIDE</span>
+                </button>
+                <button
                   onClick={() => { setActiveTab("features"); setShowAddForm(false); }}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-md font-mono text-xs font-bold transition-all ${
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-mono text-[10px] md:text-xs font-bold transition-all ${
                     activeTab === "features"
                       ? "bg-amber-500 text-slate-950"
                       : "text-slate-400 hover:text-slate-200"
                   }`}
                   id="tab_sys_features"
                 >
-                  <Layers className="w-3.5 h-3.5" />
-                  <span>APP FEATURES ({4})</span>
+                  <Layers className="w-3.5 h-3.5 shrink-0" />
+                  <span>FEATURES ({4})</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("patches")}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-md font-mono text-xs font-bold transition-all ${
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-mono text-[10px] md:text-xs font-bold transition-all ${
                     activeTab === "patches"
                       ? "bg-amber-500 text-slate-950"
                       : "text-slate-400 hover:text-slate-200"
                   }`}
                   id="tab_sys_patches"
                 >
-                  <History className="w-3.5 h-3.5" />
-                  <span>PATCH NOTES ({patchNotes.length})</span>
+                  <History className="w-3.5 h-3.5 shrink-0" />
+                  <span>PATCHES ({patchNotes.length})</span>
                 </button>
               </div>
             </div>
@@ -353,7 +365,147 @@ export function SystemPatchNotes({ isOpen, onClose }: SystemPatchNotesProps) {
             {/* Scrollable Container */}
             <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-slate-950">
               
-              {/* Tab 1: APPS FEATURES LIST */}
+              {/* Tab 1: USER QUICKSTART GUIDE */}
+              {activeTab === "guide" && (
+                <div className="space-y-5 font-sans" id="user_guide_view">
+                  {/* Introduction Card */}
+                  <div className="p-4 bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/25 rounded-xl">
+                    <h3 className="font-mono text-xs font-bold text-amber-500 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
+                      <Sparkles className="w-4 h-4 text-amber-500 animate-pulse shrink-0" />
+                      Aetheros Command Briefing
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Welcome, Operative. The Co-op Ledger is a dual utility: a real-time mining coordinator and an automated profit-distribution engine. Use this panel to successfully manage multi-crew industrial operations in Stanton.
+                    </p>
+                  </div>
+
+                  {/* Operational Roles Section */}
+                  <div className="space-y-3">
+                    <h4 className="font-mono text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-800 pb-1 flex items-center gap-1.5">
+                      <span>🛸 Fleet Roles Directory</span>
+                    </h4>
+                    
+                    <div className="grid grid-cols-1 gap-2.5">
+                      <div className="p-3 bg-slate-950/40 border border-slate-800/80 rounded-lg">
+                        <p className="text-[11px] font-mono text-amber-400 uppercase font-semibold">COORDINATOR / SCOUT</p>
+                        <p className="text-xs text-slate-400 mt-0.5 font-sans">
+                          Locates rich mineral pockets (such as Quantainium on Lyria), records coordinates in the cluster logs, and assigns mining lasers to target rock beds.
+                        </p>
+                      </div>
+
+                      <div className="p-3 bg-slate-950/40 border border-slate-800/80 rounded-lg">
+                        <p className="text-[11px] font-mono text-amber-400 uppercase font-semibold">LASER OPERATOR (MINER)</p>
+                        <p className="text-xs text-slate-400 mt-0.5 font-sans">
+                          Commands heavy mining rigs (Prospector, MOLE, ROC) equipped with custom sub-components and laser heads to split and extract deposits.
+                        </p>
+                      </div>
+
+                      <div className="p-3 bg-slate-950/40 border border-slate-800/80 rounded-lg">
+                        <p className="text-[11px] font-mono text-amber-400 uppercase font-semibold">RAW HAULER / SADDLEBAG SWAPPER</p>
+                        <p className="text-xs text-slate-400 mt-0.5 font-sans">
+                          Executes deep-space container swaps, carrying full ore pods back to refinery decks while supplying miners with empty replacements.
+                        </p>
+                      </div>
+
+                      <div className="p-3 bg-slate-950/40 border border-slate-800/80 rounded-lg">
+                        <p className="text-[11px] font-mono text-amber-400 uppercase font-semibold">REFINE HAULER & SELLER</p>
+                        <p className="text-xs text-slate-400 mt-0.5 font-sans">
+                          Enters refinery orders, tracks production speeds, loads commercial freighters, sells refined commodities at planetary TDDs, and distributes salaries.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Step by Step Operations Guide */}
+                  <div className="space-y-3 pt-1">
+                    <h4 className="font-mono text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-800 pb-1 flex items-center gap-1.5">
+                      <span>🎮 Step-by-Step Ledger Workflow</span>
+                    </h4>
+
+                    <div className="space-y-4">
+                      {/* Step 1 */}
+                      <div className="flex gap-3">
+                        <div className="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                          1
+                        </div>
+                        <div className="space-y-0.5">
+                          <p className="text-xs font-bold text-slate-200">Enlist Your Active Party</p>
+                          <p className="text-[11px] text-slate-400 leading-relaxed">
+                            Under **Co-op Mission Log Management**, click **Enlist New Crew Member**. Fill out their Pilot Handle, choose their ship hull, and map their active role.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Step 2 */}
+                      <div className="flex gap-3">
+                        <div className="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                          2
+                        </div>
+                        <div className="space-y-0.5">
+                          <p className="text-xs font-bold text-slate-200">Log Live Field Reports (Optional)</p>
+                          <p className="text-[11px] text-slate-400 leading-relaxed">
+                            If active scouts are searching for rocks or bulk haulers are swapping cargo containers, record active alerts inside the **Scouting Reports** and **Saddlebag Swaps** feeds to sync targets.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Step 3 */}
+                      <div className="flex gap-3">
+                        <div className="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                          3
+                        </div>
+                        <div className="space-y-0.5">
+                          <p className="text-xs font-bold text-slate-200">Record Extracted Cargo Loads</p>
+                          <p className="text-[11px] text-slate-400 leading-relaxed">
+                            Go to **Record Extracted Cargo Run** when transporting raw material. Choose the ore material, select the refinery location (e.g. `ARC-L1 Wide Forest`), and pick a refining path (Cormack, Dinyx) to automatically track tax fees and yield metrics.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Step 4 */}
+                      <div className="flex gap-3">
+                        <div className="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                          4
+                        </div>
+                        <div className="space-y-0.5">
+                          <p className="text-xs font-bold text-slate-200">File Shared Out-Of-Pocket Expenses</p>
+                          <p className="text-[11px] text-slate-400 leading-relaxed">
+                            If any pilot paid for custom fees, equipment rentals, or quantum fuel top-ups, add the log under **Operational Expenditures**. The ledger automatically refunds this money to them out of gross earnings before dividends.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Step 5 */}
+                      <div className="flex gap-3">
+                        <div className="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                          5
+                        </div>
+                        <div className="space-y-0.5">
+                          <p className="text-xs font-bold text-slate-200">Calibrate Dividend Distributions</p>
+                          <p className="text-[11px] text-slate-400 leading-relaxed">
+                            Pick a payout rule: **Equal Split** for identical splits, **By Role %** for specialized role performance (adjustable inside the Config Roles modal), or **Custom Shares** to assign direct numbers.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Step 6 */}
+                      <div className="flex gap-3">
+                        <div className="w-5 h-5 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                          ✓
+                        </div>
+                        <div className="space-y-0.5">
+                          <p className="text-xs font-bold text-amber-500">Pay Crew via mo.TRADER Console</p>
+                          <p className="text-[11px] text-slate-350 leading-relaxed">
+                            Finally, go to the bottom of the ledger. Click **Copy** next to each active player. Open Star Citizen's game chat console in your cockpit, paste (`CTRL+V`), and press enter to instantly pay exact amounts!
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 2: APPS FEATURES LIST */}
               {activeTab === "features" && (
                 <div className="space-y-6" id="features_list_view">
                   <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800/50">
